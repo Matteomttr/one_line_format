@@ -1,1 +1,0 @@
-Test for view if dprintf overwrite other text.
