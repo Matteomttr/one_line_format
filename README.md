@@ -28,8 +28,7 @@ int a = 1;
 After:
 
 ```
-int a = 1;
-{ x = 1; y = 2; }
+int a = 1; { x = 1; y = 2; }
 ```
 
 The file is modified in place (overwritten with the result).
