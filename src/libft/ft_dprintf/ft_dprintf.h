@@ -7,7 +7,6 @@
  * Copyright (c) 2026 Matteomttr. All rights reserved.
  * ===================================================== */
 
-
 #ifndef FT_DPRINTF_H
 # define FT_DPRINTF_H
 
@@ -20,7 +19,7 @@
 # define HEX_UP "0123456789ABCDEF"
 
 /* Main function */
-int 	ft_dprintf(int fd, const char *format, ...) __attribute__ ((format (printf, 2, 3)));
+int		ft_dprintf(int fd, const char *format, ...)	__attribute__	((format (printf, 2, 3)));
 
 /* Utility functions */
 int		ft_putchar_fd(char c, int fd);

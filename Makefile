@@ -1,46 +1,52 @@
-# The name of the one_line_format archive
+# The name of the one_line_format executable
 NAME= one_line_format
 
 # Compiler + flags for executable
 CC= cc
-CFLAGS= -Wall -Werror -Wextra
+CFLAGS= -Wall -Wextra -Werror -g
 
-# Compiler + flags for archive
-AR= ar
-ARFLAGS= rsc
-
-# Source and object directories
+# Source, object and library directories
 SRC_DIR= src
 OBJ_DIR= obj
+DPRINTF_DIR= $(SRC_DIR)/libft/ft_dprintf
 
 # List of archive files
-ARS=	$(SRC_DIR)/libft/ft_dprintf/libft_dprintf.a \
+DPRINTF= $(DPRINTF_DIR)/libft_dprintf.a
+
+# List of include directories
+INCLUDES= -I$(SRC_DIR) \
+			-I$(SRC_DIR)/get_next_line \
+			-I$(DPRINTF_DIR)
 
 # List of src files
-SRCS=	$(SRC_DIR)/main.c \
+SRCS= $(SRC_DIR)/main.c \
+		$(SRC_DIR)/ft_parse_file.c \
+		$(SRC_DIR)/ft_format_text.c \
+		$(SRC_DIR)/get_next_line/get_next_line.c \
+		$(SRC_DIR)/get_next_line/get_next_line_utils.c
 
-# List of obj files
-OBJS=	$(OBJ_DIR)/main.o \
+# List of obj files (derived from SRCS, keeps subdirectories)
+OBJS= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # Compile everything
 all: $(NAME)
 
-# Compile everything into an archive
+# Compile everything into an executable (builds the archive first)
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) $(ARS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(DPRINTF) -o $(NAME)
 	@echo "Executable created successfully!"
 
 # Compile src files into obj files
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 # Clean up obj files
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@echo "Object successfully deleted!"
 
-# Clean up obj files and archive
+# Clean up obj files and executable
 fclean: clean
 	@rm -f $(NAME)
 	@echo "Executable successfully deleted!"

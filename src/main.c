@@ -9,31 +9,56 @@
 
 #include "../one_line_format.h"
 
+void	modif_file(char *str, char *argv)
+{
+	int	fd;
+
+	fd = open(argv, O_WRONLY | O_TRUNC);
+	if (fd == -1)
+	{
+		free(str);
+		return ;
+	}
+	ft_dprintf(fd, "%s", str);
+	close(fd);
+}
+
+char	*read_file(char *argv)
+{
+	int		fd;
+	char	*str;
+
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_dprintf(2, "Error: invalid file %s\n", argv);
+		return (NULL);
+	}
+	str = ft_parse_file(fd);
+	close(fd);
+	return (str);
+}
+
 int	main(int argc, char **argv)
 {
-	int	i;
-	int	fd;
-	char str[1000];
+	int		i;
+	char	*str;
 
-	i = 1;
-	fd = 0;
 	if (argc < 2)
 	{
-		ft_dprintf(1, "Error: no file.\n");
+		ft_dprintf(2, "Error: no file.\n");
 		return (1);
 	}
-	while (argv[i])
+	i = 1;
+	while (i < argc)
 	{
-		fd = open(argv[i], O_RDWR);
-		if (fd == -1)
-		{
-			ft_dprintf(1, "Error: invalid file.\n");
-			return(1);
-		}
-		int z = read(fd, str, 1000);
-		if (z <= 0)
-			ft_dprintf("Error 404!")
-		ft_dprintf(fd, "Test for view if dprintf overwrite other text.");
+		str = read_file(argv[i]);
+		if (!str)
+			return (1);
+		str = ft_format_text(str);
+		modif_file(str, argv[i]);
+		free(str);
 		i++;
 	}
+	return (0);
 }

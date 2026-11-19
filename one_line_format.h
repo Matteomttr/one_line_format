@@ -17,6 +17,13 @@
 
 /* Inclusion of necessary libraries */
 # include "src/libft/ft_dprintf/ft_dprintf.h"
+# include "src/get_next_line/get_next_line.h"
 # include <fcntl.h>
+# include <stdbool.h>
+# include <stdio.h>
+
+/* Function utils */
+char	*ft_parse_file(int fd);
+char	*ft_format_text(char *str);
 
 #endif
