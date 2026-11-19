@@ -9,6 +9,7 @@
 
 #include "../one_line_format.h"
 
+/* Modif function */
 void	modif_file(char *str, char *argv)
 {
 	int	fd;
@@ -23,6 +24,7 @@ void	modif_file(char *str, char *argv)
 	close(fd);
 }
 
+/* Read function */
 char	*read_file(char *argv)
 {
 	int		fd;
@@ -39,6 +41,7 @@ char	*read_file(char *argv)
 	return (str);
 }
 
+/* Main function */
 int	main(int argc, char **argv)
 {
 	int		i;

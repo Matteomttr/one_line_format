@@ -9,6 +9,7 @@
 
 #include "../one_line_format.h"
 
+/* Updates the number of curly braces */
 static bool	ft_update_depth(char c, int *depth)
 {
 	if (c == '{')
@@ -18,6 +19,7 @@ static bool	ft_update_depth(char c, int *depth)
 	return (*depth > 0);
 }
 
+/* Replace all line breaks and tabs with whitespace characters. */
 static void	ft_replace_whitespaces(char *str)
 {
 	int	depth;
@@ -34,6 +36,7 @@ static void	ft_replace_whitespaces(char *str)
 	}
 }
 
+/* Remove the extra spaces */
 static void	ft_remove_extra_spaces(char *str)
 {
 	int		i;
@@ -59,6 +62,7 @@ static void	ft_remove_extra_spaces(char *str)
 	str[j] = '\0';
 }
 
+/* Calls the formatting functions */
 char	*ft_format_text(char *str)
 {
 	if (!str)

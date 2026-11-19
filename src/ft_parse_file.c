@@ -9,6 +9,7 @@
 
 #include "../one_line_format.h"
 
+/* Join all the lines in the file */
 char	*ft_parse_file(int fd)
 {
 	char	*line;
