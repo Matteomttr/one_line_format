@@ -13,6 +13,7 @@ int	main(int argc, char **argv)
 {
 	int	i;
 	int	fd;
+	char str[1000];
 
 	i = 1;
 	fd = 0;
@@ -29,6 +30,9 @@ int	main(int argc, char **argv)
 			ft_dprintf(1, "Error: invalid file.\n");
 			return(1);
 		}
+		int z = read(fd, str, 1000);
+		if (z <= 0)
+			ft_dprintf("Error 404!")
 		ft_dprintf(fd, "Test for view if dprintf overwrite other text.");
 		i++;
 	}
